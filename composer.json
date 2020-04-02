@@ -1,0 +1,30 @@
+{
+    "name": "dexperts/user-authentication",
+    "description": "Contains user management and authentication functionality to add to your project",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stef van den Berg",
+            "email": "stef@dexperts.nl"
+        },
+        {
+            "name": "Roel de Man",
+            "email": "roel@dexperts.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Dexperts\\Authentication\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dexperts\\Authentication\\AuthenticationServiceProvider"
+            ]
+        }
+    }
+}
