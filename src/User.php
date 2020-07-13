@@ -2,8 +2,12 @@
 
 namespace Dexperts\Authentication;
 
-class User extends \App\User
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
 {
+	use Notifiable;
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -19,10 +23,14 @@ class User extends \App\User
 	 * @var array
 	 */
 	protected $hidden = [
-		'password', 'remember_token', 'type'
+		'password', 'remember_token'
 	];
 
 	public function canEdit() {
+		return $this->type == 'admin';
+	}
+
+	public function canRemove() {
 		return $this->type == 'admin';
 	}
 

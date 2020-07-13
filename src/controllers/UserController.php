@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('admin.users.index', ['users' => $users]);
+        return view('authentication::users.index', compact('users'));
     }
 
     /**
@@ -31,7 +31,7 @@ class UserController extends Controller
     	$rights = Rights::all();
     	$user = new User();
     	$actionPath = '/admin/users';
-	    return view('admin/users/edit', compact('rights', 'user', 'actionPath'));
+	    return view('authentication::users.edit', compact('rights', 'user', 'actionPath'));
     }
 
 	/**
@@ -54,12 +54,6 @@ class UserController extends Controller
 	    $user->rights_id = request('rights');
 
 	    $user->save();
-
-	    Mutation::setMutation(MutationTypes::Create,
-		    'User',
-		    $user->id,
-	        [ 'message' => 'user.created']
-	    );
 
 	    return redirect('/admin/users');
     }
@@ -85,7 +79,7 @@ class UserController extends Controller
     {
 	    $rights = Rights::all();
 	    $actionPath = '/admin/users/' . $user->id;
-	    return view('admin/users/edit', compact('rights', 'user', 'actionPath'));
+	    return view('authentication::users.edit', compact('rights', 'user', 'actionPath'));
     }
 
 	/**
@@ -108,13 +102,7 @@ class UserController extends Controller
 
 	    $user->save();
 
-	    Mutation::setMutation(MutationTypes::Update,
-		    'User',
-		    $user->id,
-		    serialize($user->getChanges())
-	    );
-
-	    return redirect('/admin/users')->with('message', __('admin/user.updated'));
+	    return redirect('/admin/users')->with('message', __('authentication::user.updated'));
     }
 
     /**

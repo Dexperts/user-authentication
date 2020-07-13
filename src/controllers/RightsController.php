@@ -17,7 +17,7 @@ class RightsController extends Controller
 	public function index()
 	{
 		$rights = Rights::all();
-		return view('admin.rights.index', compact('rights'));
+		return view('authentication::rights.index', compact('rights'));
 	}
 
 	public function create() {
@@ -25,7 +25,7 @@ class RightsController extends Controller
 		$modules = Rights::getModules();
 		$availableRights = Rights::getAvailableRights();
 		$rightsAction = '/admin/rights';
-		return view('admin.rights.edit', compact('modules', 'availableRights', 'rights', 'rightsAction'));
+		return view('authentication::rights.edit', compact('modules', 'availableRights', 'rights', 'rightsAction'));
 	}
 
 	public function store() {
@@ -42,7 +42,7 @@ class RightsController extends Controller
 			$rights->group_name = request('group_name');
 			$rights->allowed = join('|', request('rights'));
 			$rights->disallowed = '';
-			$rights->created_by = Auth::id();
+			$rights->user_id = Auth::id();
 
 			$rights->save();
 
@@ -54,7 +54,7 @@ class RightsController extends Controller
 		$modules = Rights::getModules();
 		$availableRights = Rights::getAvailableRights();
 		$rightsAction = '/admin/rights/' . $rights->id;
-		return view('admin.rights.edit', compact('modules', 'availableRights', 'rights', 'rightsAction'));
+		return view('authentication::rights.edit', compact('modules', 'availableRights', 'rights', 'rightsAction'));
 	}
 
 	public function update(Rights $rights) {

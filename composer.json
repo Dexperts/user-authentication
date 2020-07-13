@@ -14,7 +14,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "dexperts/master-templates": "dev-develop"
+    },
     "autoload": {
         "psr-4": {
             "Dexperts\\Authentication\\": "src/"
@@ -26,5 +28,11 @@
                 "Dexperts\\Authentication\\AuthenticationServiceProvider"
             ]
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:Dexperts/master-templates.git"
+        }
+    ]
 }

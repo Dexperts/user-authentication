@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class AuthenticationController extends Controller
 {
 	public function login() {
-		if (Auth::check() && Auth::user()->rights->allowed != Rights::mainParticipant) {
+		if (Auth::check()) {
 			return redirect('/admin/users');
 		} 
 		return view('authentication::auth.login');

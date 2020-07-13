@@ -1,43 +1,49 @@
-@extends('admin.layout.back')
+@extends('master-templates::admin.layout.back')
 
 @section('content')
-    <div class="container__inner">
-        <div class="list">
-            <table width="100%" class="table" cellspacing="0" cellpadding="0">
-                <thead>
-                    <tr>
-                        <th>{{ __('admin/user.name') }}</th>
-                        <th>{{ __('admin/user.email') }}</th>
-                        <th>{{ __('admin/user.type') }}</th>
-                        <th>{{ __('admin/lists.last_change') }}</th>
-                        @if (Auth::user()->canEdit())
-                            <th>
-                                {{ __('admin/lists.edit') }}
-                            </th>
-                        @endif
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($users as $user)
-                        <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->type }}</td>
-                            <td>{{ $user->getLatestChange() }}</td>
-                            @if (Auth::user()->canEdit())
-                                <td class="list__row__column"><a href="{{url('admin/users/' . $user->id . '/edit')}}" title="{{ __('admin/lists.edit') }}">{{ __('admin/lists.edit') }}</td>
-                            @endif
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+    <div class="content__header">
+        @component('master-templates::components.pageTitle')
+            @slot('title', __('authentication::user.overview.title'))
+            @slot('subTitle', __('authentication::user.overview.subtitle', ['count' => count($users)]))
+        @endcomponent
         @if (Auth::user()->canEdit())
             <div class="action-bar action-bar--right">
                 <div class="action-bar__item">
-                    <a class="button button__primary" href="/admin/users/create" title="{{ __('admin/user.add') }}">{{ __('admin/user.add') }}</a>
+                    <a class="button button--primary" href="{{ action('\Dexperts\Authentication\Controllers\UserController@create') }}" title="{{ __('authentication::user.add') }}">{{ __('authentication::user.add') }}</a>
                 </div>
             </div>
         @endif
+    </div>
+    <div class="block">
+        <table width="100%" class="table" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th class="table__header">{{ __('authentication::user.name') }}</th>
+                    <th class="table__header">{{ __('authentication::user.email') }}</th>
+                    <th class="table__header">{{ __('authentication::user.type') }}</th>
+                    <th class="table__header">{{ __('master-templates::lists.last_change') }}</th>
+                    @if (Auth::user()->canEdit())
+                        <th class="table__header">
+                            {{ __('master-templates::lists.edit') }}
+                        </th>
+                    @endif
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($users as $user)
+                    <tr class="table__row table__row--columns">
+                        <td class="table__column">{{ $user->name }}</td>
+                        <td class="table__column">{{ $user->email }}</td>
+                        <td class="table__column">{{ $user->type }}</td>
+                        <td class="table__column">{{ $user->getLatestChange() }}</td>
+                        @if (Auth::user()->canEdit())
+                            <td class="list__row__column table__column">
+                                <a class="table__link" href="{{url('admin/users/' . $user->id . '/edit')}}" title="{{ __('master-templates::lists.edit') }}">{{ __('master-templates::lists.edit') }}</a>
+                            </td>
+                        @endif
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection

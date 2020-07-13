@@ -16,6 +16,7 @@ class AuthenticationServiceProvider extends ServiceProvider
 	    $this->mergeConfigFrom(
 		    __DIR__.'/config/authentication.php', 'authentication'
 	    );
+	    config(['auth.providers.users.model' => User::class]);
     }
 
     /**

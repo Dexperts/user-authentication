@@ -13,10 +13,11 @@ return [
    |
    */
 
-	'title' => 'Welcome back! But before we go, please login.',
-	'action' => 'Login',
-	'email' => 'Login with your e-mail',
+	'title' => 'Welcome back! Please login.',
+	'action' => 'Sign in to Dashboard',
+	'email' => 'Sign in with your e-mail address',
 	'password' => 'Password',
 	'remember_me' => 'Remember me',
+	'register' => 'Don\'t have an account yet? Get Started',
 	'forgot_password' => 'Forgot password?'
 ];

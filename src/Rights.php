@@ -8,23 +8,22 @@ use Illuminate\Support\Facades\Auth;
 class Rights extends Model
 {
 	public static function getModules() {
-		return [
-			'users' => __('admin/rights.modules.users'),
-			'subscriptions' => __('admin/rights.modules.subscriptions'),
-			'pages' => __('admin/rights.modules.pages'),
-			'editions' => __('admin/rights.modules.editions'),
-			'reserves' => __('admin/rights.modules.reserves'),
-			'teams' => __('admin/rights.modules.teams'),
-			'media' => __('admin/rights.modules.media')
-		];
+		$availableModules = config('authentication.modules');
+		$currentLocale = config('authentication.locale');
+		$usedModules = [];
+		foreach($availableModules as $module) {
+			array_push($usedModules, config('authentication.modules_lang')[$currentLocale][$module]);
+		}
+		return $usedModules;
 	}
 	public static function getAvailableRights() {
+		$currentLocale = config('authentication.locale');
 		return [
-			'admin' => __('admin/rights.rights.admin'),
-			'read' => __('admin/rights.rights.read'),
-			'create' => __('admin/rights.rights.create'),
-			'update' => __('admin/rights.rights.update'),
-			'delete' => __('admin/rights.rights.delete')
+			'admin' => config('authentication.actions_lang')[$currentLocale]['admin'],
+			'read' => config('authentication.actions_lang')[$currentLocale]['read'],
+			'create' => config('authentication.actions_lang')[$currentLocale]['create'],
+			'update' => config('authentication.actions_lang')[$currentLocale]['update'],
+			'delete' => config('authentication.actions_lang')[$currentLocale]['delete']
 		];
 	}
 
@@ -35,15 +34,13 @@ class Rights extends Model
 	public const moduleReserves = 'reserves';
 	public const moduleTeams = 'teams';
 	public const moduleMedia = 'media';
+	public const moduleRights = 'rights';
 
 	public const admin = 'admin';
 	public const read = 'read';
 	public const create = 'create';
 	public const update = 'update';
 	public const delete = 'delete';
-
-	public const onlyTeamMutations = 5;
-	public const mainParticipant = 'only-team-mutations';
 
 	public static function isAllowed($module, $action, $userId = null) {
 		if ($userId == null) {
@@ -53,12 +50,6 @@ class Rights extends Model
 		$neededRights = strtolower($module) . '-' . strtolower($action);
 		$userAllowedTo = explode('|', $user->rights->allowed);
 
-		if (in_array(self::mainParticipant, $userAllowedTo)) {
-			if ($module == "subscriptions" && $action == "read") {
-				return true;
-			}
-			return false;
-		}
 
 		if ($action == null) {
 			if (in_array('admin', $userAllowedTo)) {
@@ -94,7 +85,7 @@ class Rights extends Model
 		return $this->updated_at ? $this->updated_at->diffForHumans() : $this->created_at->diffForHumans();
 	}
 
-	public function author() {
+	public function created_by() {
 		return $this->hasOne('Dexperts\Authentication\User');
 	}
 }
