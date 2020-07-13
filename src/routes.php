@@ -39,7 +39,5 @@ Route::group(['middleware' => ['web']], function() {
 				Route::patch( '/{rights}', '\Dexperts\Authentication\Controllers\RightsController@update');
 			});
 		});
-
-
 	});
 });
