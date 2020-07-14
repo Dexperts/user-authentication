@@ -16,7 +16,7 @@
     ],
     "minimum-stability": "1.0.1",
     "require": {
-        "dexperts/master-templates": "dev-develop"
+        "dexperts/master-templates": "^1.0"
     },
     "autoload": {
         "psr-4": {
