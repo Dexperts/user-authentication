@@ -1,7 +1,7 @@
 {
     "name": "dexperts/user-authentication",
     "description": "Contains user management and authentication functionality to add to your project",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -14,9 +14,9 @@
             "email": "roel@dexperts.nl"
         }
     ],
-    "minimum-stability": "1.0.1",
+    "minimum-stability": "1.0.2",
     "require": {
-        "dexperts/master-templates": "^1.0"
+        "dexperts/master-templates": "^1.0.0"
     },
     "autoload": {
         "psr-4": {
