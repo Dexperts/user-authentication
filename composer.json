@@ -1,6 +1,7 @@
 {
     "name": "dexperts/user-authentication",
     "description": "Contains user management and authentication functionality to add to your project",
+    "version": "2.0",
     "type": "project",
     "license": "MIT",
     "authors": [
