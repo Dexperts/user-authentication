@@ -1,7 +1,6 @@
 {
     "name": "dexperts/user-authentication",
     "description": "Contains user management and authentication functionality to add to your project",
-    "version": "1.0.2",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -14,9 +13,9 @@
             "email": "roel@dexperts.nl"
         }
     ],
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "require": {
-        "dexperts/master-templates": "^1.0"
+        "dexperts/master-templates": "1.1.*"
     },
     "autoload": {
         "psr-4": {
@@ -26,14 +25,14 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Dexperts\\Authentication\\AuthenticationServiceProvider"
+              "AuthenticationServiceProvider"
             ]
         }
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "git@github.com:Dexperts/master-templates.git"
+            "type": "github",
+            "url": "https://github.com/Dexperts/master-templates"
         }
     ]
 }

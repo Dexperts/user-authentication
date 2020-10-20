@@ -22,7 +22,7 @@
                     <th class="table__header">{{ __('authentication::user.email') }}</th>
                     <th class="table__header">{{ __('authentication::user.type') }}</th>
                     <th class="table__header">{{ __('master-templates::lists.last_change') }}</th>
-                    @if (Auth::user()->canEdit())
+                    @if (\Dexperts\Authentication\Rights::isAllowed('users', 'update'))
                         <th class="table__header">
                             {{ __('master-templates::lists.edit') }}
                         </th>
@@ -36,7 +36,7 @@
                         <td class="table__column">{{ $user->email }}</td>
                         <td class="table__column">{{ $user->type }}</td>
                         <td class="table__column">{{ $user->getLatestChange() }}</td>
-                        @if (Auth::user()->canEdit())
+                        @if (\Dexperts\Authentication\Rights::isAllowed('users', 'update'))
                             <td class="list__row__column table__column">
                                 <a class="table__link" href="{{url('admin/users/' . $user->id . '/edit')}}" title="{{ __('master-templates::lists.edit') }}">{{ __('master-templates::lists.edit') }}</a>
                             </td>

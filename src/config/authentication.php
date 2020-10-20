@@ -11,19 +11,39 @@ return [
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => env('locale', 'en'),
 	'table_name' => 'users',
-	'modules' => ['users', 'rights','products'],
+	'modules' => ['users', 'rights','products', 'categories', 'blogs', 'trends', 'locations', 'legislation', 'calculator', 'appointments', 'customers', 'orders', 'pages'],
 	'modules_lang' => [
 		'en' => [
 			'users' => 'Users',
 			'rights' => 'Rights',
-			'products' => 'Products'
+			'products' => 'Products',
+            'categories' => 'Categories',
+            'blogs' => 'Blogs',
+            'trends' => 'Trends',
+            'locations' => 'Locations',
+            'legislations' => 'Legislations',
+            'calculator' => 'Calculator option',
+            'appointments' => 'Appointments',
+            'customers' => 'Customers',
+            'orders' => 'Orders',
+            'pages' => 'Pages'
 		],
 		'nl' => [
 			'users' => 'Gebruikers',
 			'rights' => 'Rechten',
-			'products' => 'Producten'
+			'products' => 'Producten',
+            'categories' => 'Categorieen',
+            'blogs' => 'Blogs',
+            'trends' => 'Trends',
+            'locations' => 'Locaties',
+            'legislations' => 'Wetgeving',
+            'calculator' => 'Calculatie opties',
+            'appointments' => 'Afspraken',
+            'customers' => 'Klanten',
+            'orders' => 'Bestellingen',
+            'pages' => 'Pagina\'s'
 		]
 	],
 	'actions' => ['admin', 'read', 'create', 'update', 'delete'],

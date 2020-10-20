@@ -49,9 +49,9 @@
                             <label class="form__label form__label--light">
                                 <label class="form__switch">
                                     <input type="checkbox" name="rights[]" onclick="disabledAdminOption()"
-                                       {{ (strstr($rights->allowed, strtolower($module) . '-' . strtolower($right)) != false)
+                                       {{ (strstr($rights->allowed, strtolower($moduleLabel) . '-' . strtolower($right)) != false)
                                         ? 'checked' : '' }}
-                                       value="{{strtolower($module)}}-{{strtolower($right)}}" />
+                                       value="{{strtolower($moduleLabel)}}-{{strtolower($right)}}" />
                                     <span class="form__switch__slider form__switch__slider--round"></span>
                                 </label>
                                 {{$rightLabel}}

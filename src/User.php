@@ -34,9 +34,9 @@ class User extends Authenticatable
 		return $this->type == 'admin';
 	}
 
-	public function getLatestChange() {
-		return $this->updated_at ? $this->updated_at->diffForHumans() : $this->created_at->diffForHumans();
-	}
+    public function getLatestChange() {
+        return $this->updated_at ? $this->updated_at->diffForHumans() : $this->created_at->diffForHumans();
+    }
 
 	public function rights() {
 		return $this->belongsTo('Dexperts\Authentication\Rights');

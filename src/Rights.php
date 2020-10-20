@@ -27,14 +27,19 @@ class Rights extends Model
 		];
 	}
 
-	public const moduleUsers = 'users';
-	public const moduleSubscriptions = 'subscriptions';
-	public const modulePages = 'pages';
-	public const moduleEditions = 'editions';
-	public const moduleReserves = 'reserves';
-	public const moduleTeams = 'teams';
-	public const moduleMedia = 'media';
-	public const moduleRights = 'rights';
+	public const users = 'users';
+	public const rights = 'rights';
+	public const products = 'products';
+	public const categories = 'categories';
+	public const blogs = 'blogs';
+	public const trends = 'trends';
+	public const locations = 'locations';
+	public const legislations = 'legislations';
+	public const calculator = 'calculator';
+	public const appointments = 'appointments';
+	public const customers = 'customers';
+	public const orders = 'orders';
+	public const pages = 'pages';
 
 	public const admin = 'admin';
 	public const read = 'read';
@@ -47,8 +52,14 @@ class Rights extends Model
 			$userId = Auth::user()->id;
 		}
 		$user = User::with('rights')->find($userId);
+		if ($user->type == 'admin') {
+		    return true;
+        }
 		$neededRights = strtolower($module) . '-' . strtolower($action);
-		$userAllowedTo = explode('|', $user->rights->allowed);
+		$userAllowedTo = [];
+		if ($user->rights && $user->rights->allowed) {
+            $userAllowedTo = explode('|', $user->rights->allowed);
+        }
 
 
 		if ($action == null) {
